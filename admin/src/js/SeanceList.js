@@ -37,13 +37,12 @@ export default class SeancesList {
     });
   }
 
-  renderHallsSeances() {
+  async renderHallsSeances() {
     this.containerEl.innerHTML = "";
-    this.hallsSeances.forEach(el => {
-      el.getSeancesHallElement().then(elem => {
-        this.containerEl.appendChild(elem);
-      });
-    });
+    for (const item of this.hallsSeances) {
+        const element = await item.getSeancesHallElement();
+        this.containerEl.appendChild(element);
+    }
   }
 
   updateHallsSeances() {
